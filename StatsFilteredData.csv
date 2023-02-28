@@ -1,0 +1,196 @@
+"","AgeGroup","Age","Gender","EducationLevel","EducInd","AverageIncome"
+"1","15 to 24 years","20","Male","No certificate, diploma or degree","2",28048
+"2","15 to 24 years","20","Male","No certificate, diploma or degree","2",29496
+"3","15 to 24 years","20","Female","No certificate, diploma or degree","2",20719
+"4","15 to 24 years","20","Female","No certificate, diploma or degree","2",22320
+"5","25 to 34 years","30","Male","No certificate, diploma or degree","2",43151
+"6","25 to 34 years","30","Male","No certificate, diploma or degree","2",39159
+"7","25 to 34 years","30","Female","No certificate, diploma or degree","2",29946
+"8","25 to 34 years","30","Female","No certificate, diploma or degree","2",29323
+"9","35 to 44 years","40","Male","No certificate, diploma or degree","2",52084
+"10","35 to 44 years","40","Male","No certificate, diploma or degree","2",45086
+"11","35 to 44 years","40","Female","No certificate, diploma or degree","2",34831
+"12","35 to 44 years","40","Female","No certificate, diploma or degree","2",30972
+"13","45 to 54 years","50","Male","No certificate, diploma or degree","2",55982
+"14","45 to 54 years","50","Male","No certificate, diploma or degree","2",46544
+"15","45 to 54 years","50","Female","No certificate, diploma or degree","2",36661
+"16","45 to 54 years","50","Female","No certificate, diploma or degree","2",32859
+"17","55 to 64 years","60","Male","No certificate, diploma or degree","2",54818
+"18","55 to 64 years","60","Male","No certificate, diploma or degree","2",45884
+"19","55 to 64 years","60","Female","No certificate, diploma or degree","2",37015
+"20","55 to 64 years","60","Female","No certificate, diploma or degree","2",34049
+"21","65 to 74 years","70","Male","No certificate, diploma or degree","2",41475
+"22","65 to 74 years","70","Male","No certificate, diploma or degree","2",43791
+"23","65 to 74 years","70","Female","No certificate, diploma or degree","2",32080
+"24","65 to 74 years","70","Female","No certificate, diploma or degree","2",32977
+"25","75 years and over","75+","Male","No certificate, diploma or degree","2",30379
+"26","75 years and over","75+","Male","No certificate, diploma or degree","2",100912
+"27","75 years and over","75+","Female","No certificate, diploma or degree","2",21385
+"28","75 years and over","75+","Female","No certificate, diploma or degree","2",44942
+"29","15 to 24 years","20","Male","Secondary (high) school diploma or equivalency certificate","3",32597
+"30","15 to 24 years","20","Male","Secondary (high) school diploma or equivalency certificate","3",28657
+"31","15 to 24 years","20","Female","Secondary (high) school diploma or equivalency certificate","3",24790
+"32","15 to 24 years","20","Female","Secondary (high) school diploma or equivalency certificate","3",23475
+"33","25 to 34 years","30","Male","Secondary (high) school diploma or equivalency certificate","3",50712
+"34","25 to 34 years","30","Male","Secondary (high) school diploma or equivalency certificate","3",42267
+"35","25 to 34 years","30","Female","Secondary (high) school diploma or equivalency certificate","3",38067
+"36","25 to 34 years","30","Female","Secondary (high) school diploma or equivalency certificate","3",33730
+"37","35 to 44 years","40","Male","Secondary (high) school diploma or equivalency certificate","3",63742
+"38","35 to 44 years","40","Male","Secondary (high) school diploma or equivalency certificate","3",50215
+"39","35 to 44 years","40","Female","Secondary (high) school diploma or equivalency certificate","3",45802
+"40","35 to 44 years","40","Female","Secondary (high) school diploma or equivalency certificate","3",38952
+"41","45 to 54 years","50","Male","Secondary (high) school diploma or equivalency certificate","3",69839
+"42","45 to 54 years","50","Male","Secondary (high) school diploma or equivalency certificate","3",54514
+"43","45 to 54 years","50","Female","Secondary (high) school diploma or equivalency certificate","3",50307
+"44","45 to 54 years","50","Female","Secondary (high) school diploma or equivalency certificate","3",43432
+"45","55 to 64 years","60","Male","Secondary (high) school diploma or equivalency certificate","3",67600
+"46","55 to 64 years","60","Male","Secondary (high) school diploma or equivalency certificate","3",54023
+"47","55 to 64 years","60","Female","Secondary (high) school diploma or equivalency certificate","3",48820
+"48","55 to 64 years","60","Female","Secondary (high) school diploma or equivalency certificate","3",44806
+"49","65 to 74 years","70","Male","Secondary (high) school diploma or equivalency certificate","3",54372
+"50","65 to 74 years","70","Male","Secondary (high) school diploma or equivalency certificate","3",56538
+"51","65 to 74 years","70","Female","Secondary (high) school diploma or equivalency certificate","3",41772
+"52","65 to 74 years","70","Female","Secondary (high) school diploma or equivalency certificate","3",43613
+"53","75 years and over","75+","Male","Secondary (high) school diploma or equivalency certificate","3",45371
+"54","75 years and over","75+","Male","Secondary (high) school diploma or equivalency certificate","3",61815
+"55","75 years and over","75+","Female","Secondary (high) school diploma or equivalency certificate","3",29213
+"56","75 years and over","75+","Female","Secondary (high) school diploma or equivalency certificate","3",28611
+"57","15 to 24 years","20","Male","Apprenticeship or trades certificate or diploma","4",41050
+"58","15 to 24 years","20","Male","Apprenticeship or trades certificate or diploma","4",34176
+"59","15 to 24 years","20","Female","Apprenticeship or trades certificate or diploma","4",26012
+"60","15 to 24 years","20","Female","Apprenticeship or trades certificate or diploma","4",22108
+"61","25 to 34 years","30","Male","Apprenticeship or trades certificate or diploma","4",62522
+"62","25 to 34 years","30","Male","Apprenticeship or trades certificate or diploma","4",50036
+"63","25 to 34 years","30","Female","Apprenticeship or trades certificate or diploma","4",33381
+"64","25 to 34 years","30","Female","Apprenticeship or trades certificate or diploma","4",31457
+"65","35 to 44 years","40","Male","Apprenticeship or trades certificate or diploma","4",70479
+"66","35 to 44 years","40","Male","Apprenticeship or trades certificate or diploma","4",56352
+"67","35 to 44 years","40","Female","Apprenticeship or trades certificate or diploma","4",38304
+"68","35 to 44 years","40","Female","Apprenticeship or trades certificate or diploma","4",35563
+"69","45 to 54 years","50","Male","Apprenticeship or trades certificate or diploma","4",72472
+"70","45 to 54 years","50","Male","Apprenticeship or trades certificate or diploma","4",60730
+"71","45 to 54 years","50","Female","Apprenticeship or trades certificate or diploma","4",40685
+"72","45 to 54 years","50","Female","Apprenticeship or trades certificate or diploma","4",38714
+"73","55 to 64 years","60","Male","Apprenticeship or trades certificate or diploma","4",69997
+"74","55 to 64 years","60","Male","Apprenticeship or trades certificate or diploma","4",62633
+"75","55 to 64 years","60","Female","Apprenticeship or trades certificate or diploma","4",40127
+"76","55 to 64 years","60","Female","Apprenticeship or trades certificate or diploma","4",39942
+"77","65 to 74 years","70","Male","Apprenticeship or trades certificate or diploma","4",52378
+"78","65 to 74 years","70","Male","Apprenticeship or trades certificate or diploma","4",55941
+"79","65 to 74 years","70","Female","Apprenticeship or trades certificate or diploma","4",33790
+"80","65 to 74 years","70","Female","Apprenticeship or trades certificate or diploma","4",35885
+"81","75 years and over","75+","Male","Apprenticeship or trades certificate or diploma","4",26588
+"82","75 years and over","75+","Male","Apprenticeship or trades certificate or diploma","4",39407
+"83","75 years and over","75+","Female","Apprenticeship or trades certificate or diploma","4",19755
+"84","15 to 24 years","20","Male","College, CEGEP or other non-university certificate or diploma","5",38286
+"85","15 to 24 years","20","Male","College, CEGEP or other non-university certificate or diploma","5",33389
+"86","15 to 24 years","20","Female","College, CEGEP or other non-university certificate or diploma","5",30541
+"87","15 to 24 years","20","Female","College, CEGEP or other non-university certificate or diploma","5",28674
+"88","25 to 34 years","30","Male","College, CEGEP or other non-university certificate or diploma","5",60965
+"89","25 to 34 years","30","Male","College, CEGEP or other non-university certificate or diploma","5",50574
+"90","25 to 34 years","30","Female","College, CEGEP or other non-university certificate or diploma","5",42548
+"91","25 to 34 years","30","Female","College, CEGEP or other non-university certificate or diploma","5",39599
+"92","35 to 44 years","40","Male","College, CEGEP or other non-university certificate or diploma","5",76445
+"93","35 to 44 years","40","Male","College, CEGEP or other non-university certificate or diploma","5",62509
+"94","35 to 44 years","40","Female","College, CEGEP or other non-university certificate or diploma","5",51841
+"95","35 to 44 years","40","Female","College, CEGEP or other non-university certificate or diploma","5",46845
+"96","45 to 54 years","50","Male","College, CEGEP or other non-university certificate or diploma","5",84400
+"97","45 to 54 years","50","Male","College, CEGEP or other non-university certificate or diploma","5",69102
+"98","45 to 54 years","50","Female","College, CEGEP or other non-university certificate or diploma","5",57775
+"99","45 to 54 years","50","Female","College, CEGEP or other non-university certificate or diploma","5",52194
+"100","55 to 64 years","60","Male","College, CEGEP or other non-university certificate or diploma","5",80747
+"101","55 to 64 years","60","Male","College, CEGEP or other non-university certificate or diploma","5",69001
+"102","55 to 64 years","60","Female","College, CEGEP or other non-university certificate or diploma","5",57496
+"103","55 to 64 years","60","Female","College, CEGEP or other non-university certificate or diploma","5",53895
+"104","65 to 74 years","70","Male","College, CEGEP or other non-university certificate or diploma","5",70650
+"105","65 to 74 years","70","Male","College, CEGEP or other non-university certificate or diploma","5",68053
+"106","65 to 74 years","70","Female","College, CEGEP or other non-university certificate or diploma","5",49032
+"107","65 to 74 years","70","Female","College, CEGEP or other non-university certificate or diploma","5",50510
+"108","75 years and over","75+","Male","College, CEGEP or other non-university certificate or diploma","5",34163
+"109","75 years and over","75+","Male","College, CEGEP or other non-university certificate or diploma","5",74301
+"110","75 years and over","75+","Female","College, CEGEP or other non-university certificate or diploma","5",24932
+"111","75 years and over","75+","Female","College, CEGEP or other non-university certificate or diploma","5",25435
+"112","15 to 24 years","20","Male","University certificate or diploma below bachelor level","6",35858
+"113","15 to 24 years","20","Male","University certificate or diploma below bachelor level","6",32825
+"114","15 to 24 years","20","Female","University certificate or diploma below bachelor level","6",33154
+"115","15 to 24 years","20","Female","University certificate or diploma below bachelor level","6",31840
+"116","25 to 34 years","30","Male","University certificate or diploma below bachelor level","6",60420
+"117","25 to 34 years","30","Male","University certificate or diploma below bachelor level","6",49392
+"118","25 to 34 years","30","Female","University certificate or diploma below bachelor level","6",47305
+"119","25 to 34 years","30","Female","University certificate or diploma below bachelor level","6",41050
+"120","35 to 44 years","40","Male","University certificate or diploma below bachelor level","6",85353
+"121","35 to 44 years","40","Male","University certificate or diploma below bachelor level","6",62580
+"122","35 to 44 years","40","Female","University certificate or diploma below bachelor level","6",61386
+"123","35 to 44 years","40","Female","University certificate or diploma below bachelor level","6",48058
+"124","45 to 54 years","50","Male","University certificate or diploma below bachelor level","6",92464
+"125","45 to 54 years","50","Male","University certificate or diploma below bachelor level","6",68998
+"126","45 to 54 years","50","Female","University certificate or diploma below bachelor level","6",70368
+"127","45 to 54 years","50","Female","University certificate or diploma below bachelor level","6",53843
+"128","55 to 64 years","60","Male","University certificate or diploma below bachelor level","6",92709
+"129","55 to 64 years","60","Male","University certificate or diploma below bachelor level","6",70030
+"130","55 to 64 years","60","Female","University certificate or diploma below bachelor level","6",68390
+"131","55 to 64 years","60","Female","University certificate or diploma below bachelor level","6",55052
+"132","65 to 74 years","70","Male","University certificate or diploma below bachelor level","6",75527
+"133","65 to 74 years","70","Male","University certificate or diploma below bachelor level","6",72218
+"134","65 to 74 years","70","Female","University certificate or diploma below bachelor level","6",51758
+"135","65 to 74 years","70","Female","University certificate or diploma below bachelor level","6",53801
+"136","75 years and over","75+","Male","University certificate or diploma below bachelor level","6",36008
+"137","75 years and over","75+","Male","University certificate or diploma below bachelor level","6",22388
+"138","75 years and over","75+","Female","University certificate or diploma below bachelor level","6",27517
+"139","75 years and over","75+","Female","University certificate or diploma below bachelor level","6",25404
+"140","15 to 24 years","20","Male","Bachelor's degree","8",41275
+"141","15 to 24 years","20","Male","Bachelor's degree","8",40115
+"142","15 to 24 years","20","Female","Bachelor's degree","8",37439
+"143","15 to 24 years","20","Female","Bachelor's degree","8",36677
+"144","25 to 34 years","30","Male","Bachelor's degree","8",70801
+"145","25 to 34 years","30","Male","Bachelor's degree","8",64282
+"146","25 to 34 years","30","Female","Bachelor's degree","8",56902
+"147","25 to 34 years","30","Female","Bachelor's degree","8",52238
+"148","35 to 44 years","40","Male","Bachelor's degree","8",107915
+"149","35 to 44 years","40","Male","Bachelor's degree","8",79594
+"150","35 to 44 years","40","Female","Bachelor's degree","8",77669
+"151","35 to 44 years","40","Female","Bachelor's degree","8",61724
+"152","45 to 54 years","50","Male","Bachelor's degree","8",131701
+"153","45 to 54 years","50","Male","Bachelor's degree","8",87526
+"154","45 to 54 years","50","Female","Bachelor's degree","8",86404
+"155","45 to 54 years","50","Female","Bachelor's degree","8",66479
+"156","55 to 64 years","60","Male","Bachelor's degree","8",136266
+"157","55 to 64 years","60","Male","Bachelor's degree","8",86088
+"158","55 to 64 years","60","Female","Bachelor's degree","8",84800
+"159","55 to 64 years","60","Female","Bachelor's degree","8",63989
+"160","65 to 74 years","70","Male","Bachelor's degree","8",113601
+"161","65 to 74 years","70","Male","Bachelor's degree","8",84404
+"162","65 to 74 years","70","Female","Bachelor's degree","8",68360
+"163","65 to 74 years","70","Female","Bachelor's degree","8",60510
+"164","75 years and over","75+","Male","Bachelor's degree","8",68990
+"165","75 years and over","75+","Male","Bachelor's degree","8",65929
+"166","75 years and over","75+","Female","Bachelor's degree","8",33713
+"167","75 years and over","75+","Female","Bachelor's degree","8",36142
+"168","15 to 24 years","20","Male","University certificate, diploma or degree above bachelor level","9",34851
+"169","15 to 24 years","20","Male","University certificate, diploma or degree above bachelor level","9",38463
+"170","15 to 24 years","20","Female","University certificate, diploma or degree above bachelor level","9",34600
+"171","15 to 24 years","20","Female","University certificate, diploma or degree above bachelor level","9",35078
+"172","25 to 34 years","30","Male","University certificate, diploma or degree above bachelor level","9",76780
+"173","25 to 34 years","30","Male","University certificate, diploma or degree above bachelor level","9",70217
+"174","25 to 34 years","30","Female","University certificate, diploma or degree above bachelor level","9",64035
+"175","25 to 34 years","30","Female","University certificate, diploma or degree above bachelor level","9",57695
+"176","35 to 44 years","40","Male","University certificate, diploma or degree above bachelor level","9",122386
+"177","35 to 44 years","40","Male","University certificate, diploma or degree above bachelor level","9",96529
+"178","35 to 44 years","40","Female","University certificate, diploma or degree above bachelor level","9",89654
+"179","35 to 44 years","40","Female","University certificate, diploma or degree above bachelor level","9",73922
+"180","45 to 54 years","50","Male","University certificate, diploma or degree above bachelor level","9",161112
+"181","45 to 54 years","50","Male","University certificate, diploma or degree above bachelor level","9",106588
+"182","45 to 54 years","50","Female","University certificate, diploma or degree above bachelor level","9",105295
+"183","45 to 54 years","50","Female","University certificate, diploma or degree above bachelor level","9",83696
+"184","55 to 64 years","60","Male","University certificate, diploma or degree above bachelor level","9",169265
+"185","55 to 64 years","60","Male","University certificate, diploma or degree above bachelor level","9",116153
+"186","55 to 64 years","60","Female","University certificate, diploma or degree above bachelor level","9",107574
+"187","55 to 64 years","60","Female","University certificate, diploma or degree above bachelor level","9",88280
+"188","65 to 74 years","70","Male","University certificate, diploma or degree above bachelor level","9",134388
+"189","65 to 74 years","70","Male","University certificate, diploma or degree above bachelor level","9",120516
+"190","65 to 74 years","70","Female","University certificate, diploma or degree above bachelor level","9",94450
+"191","65 to 74 years","70","Female","University certificate, diploma or degree above bachelor level","9",86355
+"192","75 years and over","75+","Male","University certificate, diploma or degree above bachelor level","9",225570
+"193","75 years and over","75+","Male","University certificate, diploma or degree above bachelor level","9",81439
+"194","75 years and over","75+","Female","University certificate, diploma or degree above bachelor level","9",63666
+"195","75 years and over","75+","Female","University certificate, diploma or degree above bachelor level","9",52284

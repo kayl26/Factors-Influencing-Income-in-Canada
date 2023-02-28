@@ -1,0 +1,415 @@
+---
+title: "Analysis of Factors Influencing Income in Canada"
+output:
+  pdf_document: default
+  word_document: default
+  html_document: default
+---
+
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.width = 4, fig.height= 3
+                     )
+library(tidyverse)
+library(kableExtra)
+library(ggplot2)
+library(lmtest)
+library(tinytex)
+library(gridExtra)
+```
+
+
+```{r}
+team <- tibble(`Last Name` = c("Chaudhry","Habib","Lee"),
+               `First Name` = c("Myisha", "Kayleigh","Abigail"),
+                `Student ID` = c("200591740", "200370580", "200469770"),
+               `Course` = c("ST362", "ST362", "ST362"))
+
+title <- "Project Title : Analysis of Factors Influencing Income in Canada"
+team %>% kable(align = 'l', escape = FALSE, caption = title) %>% 
+          kable_styling(bootstrap_options = 'bordered', full_width = TRUE) %>% 
+          row_spec(row = c(0:3), extra_css = 'border: 1px solid')
+          
+
+```
+## Introduction
+This report will investigate some factors that influence average employment income for people residing in Canada. The data which is titled: “Immigrant Status and Period of Immigration (10), Employment Income Statistics (7), STEM and BHASE (non-STEM) Groupings, Major Field of Study - Classification of Instructional Programs (CIP) 2016 (36), Highest Certificate, Diploma or Degree (9), Work Activity During the Reference Year (3), Age (10) and Sex (3) for the Population Aged 15 Years and Over in Private Households of Canada, Provinces and Territories and Census Metropolitan Areas, 2016 Census - 25% Sample Data” is gathered from the 2016 census and accessed through the Statistics Canada website. More detailed data was not yet available for the recent 2021 census; thus the 2016 census data was used in this analysis.
+The main question we will be answering through this analysis is: What are the factors that impact income levels in Canada? Some sub questions that we will also be working to answer include the following:
+● Does gender affect salary?
+● Does province of residence affect salary?
+● Does citizenship/immigration status affect salary?
+● Does education level affect salary?
+We believe that all of these factors do have some level of impact in the average salary of Canadians. The following are our hypotheses:
+1. Given our knowledge of the gender pay gap, we believe that males will be earning more than their female counterparts.
+2. We suspect that those residing in more populated provinces (such as Ontario or British Columbia) with numerous metropolitan areas will have higher salaries than those residing in the other provinces.
+3. We predict that immigrants will earn less than non-immigrants.
+4. Lastly, we think that people with higher education will earn more than those with lower
+or none at all.
+
+
+
+```{r,include=FALSE}
+#Instead, just bring in the RDA file in the next chunk
+path <- c('/Users/kayleighhabib/Desktop/UNIVERSITY/third yr/spring 2022/st362/project/')
+```
+
+## Data Description
+The dataset contains over 14 million records in 32 columns. As this included more details than required, we performed appropriate filtering, column selection and renaming of columns to make the data more meaningful. The reduced dataset was used for the remainder of this project contains the following columns:
+
+
+Age: 7 factor levels : age groups  15-24, 25-34, 35-44, 45-54, 55-64, 65-74, 75+
+EducInd: 7 factor levels :No certificate, High School, Trade, College, <Bachelor, Bachelor, Post Graduate
+Gender: Male or Female
+Immigration Status: Immigrant or Non-Immigrant
+Province: AB, BC, MN, NB, NFLD, NS, ON, PEI, QC, SK, NT, NWT, YK
+Income (Target): Average Income in in thousands
+
+
+```{r,include=FALSE}
+#Can use this to read in the filterd data file
+projectData <- readRDS(paste0(path, 'StatsFinalData.RDA'))
+
+
+projectData <- projectData %>% 
+  mutate(Province = as.factor(case_when(Province=="British Columbia" ~ "BC",
+                              Province=="Alberta" ~ "AB",
+                              Province=="Saskatchewan" ~ "SK",
+                              Province=="Manitoba" ~ "MN",
+                              Province=="Ontario" ~ "ON",
+                              Province=="Quebec" ~ "QC",
+                              Province=="Nova Scotia" ~ "NS",
+                              Province=="New Brunswick" ~ "NB",
+                              Province=="Prince Edward Island" ~ "PEI",
+                              Province=="Newfoundland and Labrador" ~ "NFLD",
+                              Province=="Nunavut" ~ "NT",
+                              Province=="Yukon" ~ "YK",
+                              TRUE ~ "NWT")))%>% 
+  mutate(Age = as.factor(case_when(AgeGroup=='15 to 24 years' ~ '15-24',
+                         AgeGroup=='25 to 34 years' ~ '25-34',
+                         AgeGroup=='35 to 44 years' ~ '35-44',
+                         AgeGroup=='45 to 54 years' ~ '45-54',
+                         AgeGroup=='55 to 64 years' ~ '55-64',
+                         AgeGroup=='65 to 74 years' ~ '65-74',
+                         TRUE ~ '75+')),
+         Gender = as.factor(Gender),
+         EducInd = as.factor(case_when(EducInd==2 ~ 'NoCert',
+                             EducInd==3 ~ 'HS',
+                             EducInd==4 ~ 'Trade',
+                             EducInd==5 ~ 'Coll',
+                             EducInd==6 ~ '<Bach',
+                             EducInd==8 ~ 'Bach',
+                             TRUE ~ 'PostGrad')),
+         ImmigStatus = as.factor(ImmigStatus),
+         AverageIncome = Income/1000) %>% 
+  select(c(Age, Gender, EducInd, ImmigStatus, Province, AverageIncome))
+```
+
+
+```{r}
+#Display summary statistics
+summary(projectData)
+```
+## Exploratory Data Analysis
+To begin our analysis, we created boxplots to display the relationship of each of the predictors to the target variable (income) in the data.
+
+
+```{r, fig.width=8, fig.height=10}
+# create plots
+p1<-ggplot(data=projectData, aes(x=Age, y=AverageIncome))+
+  geom_boxplot() +
+  xlab("Age Group")+
+  ylab("Ave Income (thousands")+
+  ggtitle("Average Income (in '000s) by Age Group")+
+  theme(plot.title = element_text(size=16))
+
+p2<-ggplot(data=projectData, aes(x=EducInd, y=AverageIncome))+
+  geom_boxplot() +
+  xlab("Education Level")+
+  ylab("Ave Income (thousands")+
+  ggtitle("Average Income (in '000s) by Education Level")+
+  theme(plot.title = element_text(size=16))
+
+p5<-ggplot(data=projectData, aes(x=reorder(Province, AverageIncome, FUN=median), y =AverageIncome))+
+  geom_boxplot() +
+  xlab("Province") +
+  ylab("Ave Income (thousands") +
+  ggtitle("Average Income (in '000s) by Province") +
+  coord_flip()+
+  theme(plot.title = element_text(size=16))
+    #axis.text.x = element_text(angle = 90, vjust = 0, hjust=0))
+
+p4<-ggplot(data=projectData, aes(x=ImmigStatus, y=AverageIncome))+
+  geom_boxplot()+
+  xlab("Immigration Status") +
+  ylab("Ave Income (thousands") +
+  ggtitle("Average Income (in '000s) by Immigration Status") +
+  theme(plot.title = element_text(size=16))#,
+    #axis.text.x = element_text(angle = 90, vjust = 0, hjust=0))
+
+p3<-ggplot(data=projectData, aes(x=Gender, y=AverageIncome))+
+  geom_boxplot()+
+  xlab("Gender")+
+  ylab("Ave Income (thousands") +
+  ggtitle("Average Income (in '000s) by Gender")+
+  theme(plot.title = element_text(size=16))
+
+grid.arrange(p1,p2,p3,p4,p5, nrow= 3)
+
+
+```
+Based on these charts, we can observe the following:
+1. Average employment income increases with age up to
+the 55-64 age group. After that point it declines. This is likely because many people retire between the ages of 60 to 65.
+2. Average employment income increases as education level increases.
+3. Average employment income is higher for males than females.
+4. There are some provinces that have very similar distributions of Average Income. Nunavut appears to have the highest median value.
+5. While non-immigrants seem to have slightly higher incomes, this difference is small.
+
+
+
+## Model 1 (Age +  Province + Gender + EducInd + ImmigStatus)
+
+For the first model, we have chosen to use all the predictors in the data. Since the predictors are categorical variables, there are numerous coefficients based on the level of the category.
+
+```{r, include=TRUE}
+model1 <- lm(AverageIncome ~ Age + Province  + Gender + EducInd + ImmigStatus, data = projectData)
+summary(model1)
+```
+
+The model is the following:
+Y = B0 + B1*(Age) + B2*(Province) + B3*(Gender) + B4*(Education Level) + B5*(ImmigStatus) + error
+
+
+```{r}
+# Create anova table for fullModel
+anova(model1)
+```
+
+Based on the ANOVA table above, it appears that all predictors are significant in this model. The p-values for all predictors are less than 0.05 (alpha), meaning that we reject the null hypothesis that these predictors are not significant. 
+
+
+## Model 2 (Age (<65 only) + Province + Gender + EducInd + ImmigStatus)
+
+Based on our data visualization, we observed that average income increases with age up to 64 and declines thereafter. This is likely due to the fact that most Canadians are retired by age 65. We decided to remove the highest two age groups from the data, i.e. ages 65-74 and ages 75+.
+
+```{r}
+#remove age 65-74 and 75+
+projectDataAdj <- projectData %>% 
+  filter(!(Age %in% c('65-74','75+'))) %>% 
+  droplevels()
+
+summary(projectDataAdj)
+
+```
+
+Y = B0 + B1*(Age < 65) + B2*(Province) + B3*(Gender) + B4*(Education Level) + B5*(ImmigStatus) + error
+
+```{r}
+#create model 2 using the data with the ages>65 removed
+model2 <- lm(AverageIncome ~ Age + Province + Gender + EducInd+ ImmigStatus, data = projectDataAdj)
+summary(model2)
+
+```
+
+We looked at the summary function on this model and compared to our first model. Comparing the adjusted R2 for this model (0.7941) with that for the original model (0.7505), we see that the updated model explains more of the variation in the average income. In this case, approximately 80% versus 75% for the original model. Therefore, we will use this updated model for the next part of the analysis.
+
+
+## Model 3 (Age + Province + Gender + EducInd)
+
+```{r}
+#Create simplified model without Immigration Status
+model3 <- lm(AverageIncome ~ Age + Province + Gender + EducInd, data = projectDataAdj)
+summary(model3)
+```
+
+Y = B0 + B1*(Age) + B2*(Province) + B3*(Gender) + B4*(Education Level) + error
+
+We can test a simplified model that omits one or more of the predictors. In the following model, we omitted immigration status since from our data exploration, there did not appear to be a material difference in income levels by this factor. We then tested this simplified model against the full model.
+
+Here, we can do the following hypothesis test:
+
+H0: the coefficients for the variables in the full model which are not in the simplified
+model, are zero.
+Ha: the coefficients are not zero, meaning that the full model is better.
+
+```{r}
+#Compare simplified and full model
+anova(model3, model2)
+#since p-value < 0.05, reject the simplified model in favour of the full model
+```
+
+Based on the ANOVA test, since the p-value is less than 0.05, we will reject the null hypothesis. Thus we would conclude that the full model is better than the simplified model.
+
+
+### Dummy Variables
+As we are using categorical variables in our analysis, we ensured that we knew which level of each variable was set as the base level. For each of the categorical variables, the following show the dummy variables being assigned:
+
+
+```{r}
+# dummy variables
+contrasts(projectDataAdj$Age)
+contrasts(projectDataAdj$Province)
+contrasts(projectDataAdj$Gender)
+contrasts(projectDataAdj$EducInd)
+contrasts(projectDataAdj$ImmigStatus)
+
+#relevel the education variable
+projectDataAdj$EducInd <- relevel(projectDataAdj$EducInd , ref = "NoCert")
+contrasts(projectDataAdj$EducInd)
+```
+
+Based on the above, we note the following:
+1. The 15-24 age group is the base level for Age
+2. Alberta (AB) is the base level for Province
+3. Females are the base level for Gender
+4. No certificate is the base level for Education
+5. Immigrant is the based level for Immigration Status
+
+
+### Analysis of Residuals
+In linear models, there are several assumptions that apply to the residuals: 
+a. residuals have a mean of zero
+b. residuals are normally distributed
+c. residuals are homoscedastic (equal variances)
+d. residuals are independent
+
+We used the plot() function in r to look at the residuals from the model:
+
+```{r}
+plot(model2)
+plot(model2, 6)
+```
+
+### Plots
+
+Plot 1
+This plot checks the linear relationship assumptions and a horizontal line without any patterns is an indication for a good linear relationship. In the case of the plot we created for model 3, the points do not follow a straight line, and the distribution around is not even. Thus there may be some patterns in the residuals, so the assumption of linearity is not being met.
+
+Plot 2
+This plot is a Normal Q-Q plot used to examine whether the residuals are normally distributed. The plot created for model 3 has the majority of the points following the dashed line meaning most of them follow the normal distribution. Around either end of the line the data deviates and no longer follows the straight dashed line. This tells us that these end data points do not follow a normal distribution.
+
+Plot 3
+This plot is a Scale-Location plot of the square root of residuals against fitted values, used to check the homogeneity of variance of the residuals (homoscedasticity). The plot created for model 3 suggests some non-linearity, but the spread of the magnitudes seems to be lowest in the fitted values between 100 and 150, the spread of the magnitudes is highest in the fitted values between 25 and 75, and medium around 0.
+
+Plot 5
+This plot is a plot of residuals against leverages and used to identify influential cases, that is extreme values that might influence the regression results when included or excluded from the analysis. Based on this plot, it does appear that there are some cases that do not fall within the range of other data points.
+
+Plot 6
+This is a plot of Cook's distances against leverage/(1-leverage). For plot 6, we can see that there is a red dashed line near the bottom. This line tells us that the observations are all not inside of Cook’s distance, meaning that there are some influential observations. This essentially tells us that in our data, there are some outliers present.
+
+
+```{r}
+#calculate cooks.distance
+cooksd=cooks.distance(model2) # Returns the cook's distance.
+
+#get number of rows in data
+n <- nrow(projectDataAdj)
+plot(cooksd)
+# to display values in the graph
+abline(h=4/n, lty=2)
+text(x=1:length(cooksd)+1, y=cooksd, labels=ifelse(cooksd>(4/n),names(cooksd),"")) 
+
+influential <- as.numeric(names(cooksd)[(cooksd>(4/n))])
+influential
+```
+
+### Cook’s Distance
+To further our statistical understanding of our data we decided to calculate Cook's Distance. From this plot it is evident that there are a few data points that do not necessarily follow the data and are considered influential (or outliers). We also identified the true numerical values of these influential points and there are a total of 55 of them. We want to remove these influential values from the model as they create a certain bias in our data.
+
+
+## Model 4 (Model 2 without the influential points)
+To better understand what our data is trying to tell us, removing the influential values can give a clearer indication of the trends that are present.
+
+```{r}
+#remove influential records
+newProjDataAdj <- projectDataAdj[-influential,]
+
+model4 <- lm(AverageIncome ~ Age + Province + Gender + EducInd + ImmigStatus, data =newProjDataAdj)
+summary(model4)
+anova(model4)
+```
+
+Based on the ANOVA test for this model, we get a very low p-value which means that we reject the null hypothesis and thus this model is better than model 2. We can also compare the adjusted R2 values from model 2 (0.7941) and model 4 (0.8741) and see that this model has more predictive power since the adjusted R2 value is much higher than that of model 2.
+
+### Test for homoscedasticity:
+For this test the hypotheses are as follows:
+
+Ho: the error variances are all equal
+Ha: the error variances are not equal, i.e. as average income increases, the variances increase (or decrease).
+
+```{r}
+bptest(model4)
+```
+If heteroscedasticity is present, meaning that the error terms are not equally scattered, then we have to apply a transformation. By applying the Breusch-Pagan test to determine if heteroscedasticity is present, we obtained a p-value less than 0.05. Thus we reject the null hypothesis and conclude that there is sufficient evidence to say that heteroscedasticity is present in the regression model. Thus, the standard errors that are shown in the output table of the regression may be unreliable.
+
+Since heteroscedasticity is present, we apply an appropriate transformation.
+
+### Box-Cox Analysis
+The box-cox analysis indicates that a transformation may be useful for the response and regressor variables. When doing the box-cox analysis for our model, it is evident that in the plot, when lambda is 0 it falls into the 95% confidence interval. This means that the kind of transformation that would be needed to make our model better is the log transformation.
+
+```{r}
+library(MASS)
+boxcox(AverageIncome ~ 1, data=newProjDataAdj)
+detach("package:MASS", unload = TRUE) # remove the mass library bc when rerun affects the select
+```
+
+
+## Model 5 (Model 4 with log transformation)
+The purpose of the log transformation is to allow our model to become more predictive. After performing the log transformation on our model, the adjusted R2 value is now 0.9127, meaning that our model has improved as prior to this transformation the adjusted R2 value was 0.8741.
+
+```{r}
+logModel <- lm(log(AverageIncome) ~ Age + Province + Gender + EducInd + ImmigStatus, data =newProjDataAdj)
+summary(logModel)
+anova(logModel)
+
+```
+
+To verify that this model meets the conditions required for linear regression, better we used the plot() function again
+
+```{r}
+plot(logModel)
+plot(logModel, 6)
+
+```
+###Plot
+
+Plot 1
+We see that in this plot the red line is almost horizontal, and the residuals are evenly distributed about this line. This is an indication of a mean close to zero.
+
+Plot 2
+We see in this plot that the majority of the points lie on the straight dashed line. This means that the residuals follow a normal distribution.
+
+Plot 3
+These points are fairly sparse and are evenly distributed about the red line, which indicates that there is homogeneity within the data.
+
+Plot 5
+This plot indicates that there are no highly influential cases remaining in the data.
+
+
+Based on these plots, it now appears that the assumptions for linear regression are met. In addition, our model has strong predictive power as indicated by the high adjusted R2 value, so that the predictor variables included explain 91% of the variation in income.
+
+
+## Conclusions
+Our analysis using regression models and statistical methods allowed us to determine that age group, province, gender, education level and immigration status all have an impact on income levels in Canada.
+
+After visualizing our data, we used an ANOVA test to compare a model with all predictors versus a simplified model that omitted immigration status. This test indicated that the full model was better. We then removed 2 age levels that represented post-retirement individuals so that we would focus primarily on employment earnings. We then analyzed the residuals to determine whether they were consistent with the assumptions for linear models. Based on this we removed some influential cases to reduce bias in our model, and we applied a log transformation to the target variable based on the results of a Box-Cox analysis. The final model is shown as follows:
+
+Based on the coefficients indicated for our final model, it is evident that:
+1. Income levels increase as age increases above the base level of 15-24. This is consistent with our hypothesis.
+2. Using Alberta as the base level, some regions (Nunavut and Northwest Territories) have a positive impact on income, while the remaining regions have a negative impact. This was different from what we had originally thought. According to Statistics Canada, this is a consequence of the economic “boom” in the resource-based sector, particularly in Nunavut and Northwest Territories, that coincided with a decline in the manufacturing sector which impacted the economies of Ontario and Québec.
+3. Males have higher incomes than females, this is consistent with our hypothesis.
+4. Education level also impacts income. For each higher level of education, income levels also increase. This is also consistent with our expectation.
+5. Non-immigrant status also contributes in a positive way to income. This is consistent with our hypothesis.
+
+This type of analysis can be useful to government policy-makers, economists, as well as academic planners. Some work has been done to reduce the gender pay-gap, but our analysis shows that there is still room for increased equity in income levels between males and females. The income differences observed by education level can be used to implement programs aiming to improve access to higher education, regardless of immigration status. Finally, the regional differences in income help highlight the need for greater diversity in economies so that there is less variation based on residence.
+
+
+
+## Work Cited
+Government of Canada, Statistics Canada. “Data Tables, 2016 Census.” Immigrant Status and Period of Immigration (10), Employment Income Statistics (7), STEM and BHASE (Non-STEM) Groupings, Major Field of Study - Classification of Instructional Programs (CIP) 2016 (36), Highest Certificate, Diploma or Degree (9), Work Activity During the Reference Year (3), Age (10) and Sex (3) for the Population Aged 15 Years and Over in Private Households of Canada, Provinces and Territories and Census Metropolitan Areas, 2016 Census - 25% Sample Data, 17 June 2019, https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/dt-td/Rp-eng.cfm?TABID= 1&LANG=E&A=R&APATH=3&DETAIL=0&DIM=0&FL=A&FREE=0&GC=01&GL =-1&GID=1325190&GK=1&GRP=1&O=D&PID=110936&PRID=10&PTYPE=109445 &S=0&SHOWALL=0&SUB=0&Temporal=2017&THEME=123&VID=0&VNAMEE= &VNAMEF=&D1=0&D2=0&D3=0&D4=0&D5=0&D6=0.
+
+Government of Canada, Statistics Canada. “Household Income in Canada: Key Results from the 2016 Census.” The Daily - , 27 Sept. 2017, https://www150.statcan.gc.ca/n1/daily-quotidien/170913/dq170913a-eng.htm.
